@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Luxury Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+    font-display: swap;
+    font-family: 'Suisse Regular';
+    font-weight: 400;
+    src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Suisse Medium';
+    font-weight: 700;
+    src: local('Arial Bold'), local('Helvetica Neue Bold'), local('Helvetica Bold');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Suisse Regular', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #fffef2;
+    color: #333333;
+    overflow-x: hidden;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection Styling */
+::selection {
+    background: rgba(212, 175, 55, 0.3);
+    color: #333333;
+}
+
+::-moz-selection {
+    background: rgba(212, 175, 55, 0.3);
+    color: #333333;
+}

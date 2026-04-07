@@ -1,0 +1,308 @@
+.envelope-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.envelope-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.envelope-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.envelope-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 254, 242, 0.95) 0%, rgba(246, 245, 232, 0.95) 100%);
+}
+
+.envelope-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px;
+}
+
+.envelope-title {
+    font-size: 48px;
+    font-weight: 400;
+    font-family: 'Cormorant Garamond', serif;
+    color: #333333;
+    margin-bottom: 16px;
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.envelope-subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Suisse Regular', sans-serif;
+    color: #666666;
+    margin-bottom: 60px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeIn 1s ease-out 0.3s both;
+}
+
+/* Envelope 3D Structure */
+.envelope {
+    width: 400px;
+    height: 280px;
+    position: relative;
+    margin: 0 auto 32px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(.645, .045, .355, 1);
+    animation: envelopeEntrance 1.2s ease-out 0.5s both;
+}
+
+@keyframes envelopeEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.envelope.hovered {
+    transform: translateY(-12px) scale(1.02);
+    filter: drop-shadow(0 16px 48px rgba(212, 175, 55, 0.3));
+}
+
+.envelope.hovered .wax-seal {
+    animation: sealGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes sealGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(212, 175, 55, 0.8);
+    }
+}
+
+/* Envelope Back */
+.envelope-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f4e5c3 0%, #ebd9b4 100%);
+    border-radius: 0px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(135deg, #d4af37 0%, #f4e5c3 100%);
+    transform-origin: top;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transition: all 0.6s cubic-bezier(.645, .045, .355, 1);
+}
+
+.envelope.hovered .envelope-flap {
+    transform: rotateX(-15deg);
+}
+
+/* Envelope Front */
+.envelope-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #f6f5e8;
+    border-radius: 0px;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Wax Seal */
+.wax-seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #d4af37 0%, #b8932f 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 4px 16px rgba(212, 175, 55, 0.4),
+        inset 0 -2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.seal-inner {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.seal-text {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Cormorant Garamond', serif;
+    color: #fffef2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Invitation Card */
+.envelope-card {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    width: 90%;
+    height: 85%;
+    background: #fffef2;
+    border-radius: 0px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    padding: 40px 32px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(.645, .045, .355, 1);
+    z-index: -1;
+}
+
+.envelope:active .envelope-card {
+    opacity: 1;
+    transform: translateX(-50%) translateY(60px);
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.card-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-label {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Suisse Regular', sans-serif;
+    color: #666666;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.card-names {
+    font-size: 42px;
+    font-weight: 400;
+    font-family: 'Cormorant Garamond', serif;
+    color: #333333;
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.card-date {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Suisse Regular', sans-serif;
+    color: #d4af37;
+    padding: 12px 24px;
+    border: 1px solid #d4af37;
+    border-radius: 0px;
+    margin-top: 16px;
+}
+
+.envelope-instruction {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Suisse Regular', sans-serif;
+    color: #666666;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .envelope {
+        width: 320px;
+        height: 220px;
+    }
+
+    .envelope-title {
+        font-size: 36px;
+    }
+
+    .wax-seal {
+        width: 64px;
+        height: 64px;
+    }
+
+    .seal-inner {
+        width: 52px;
+        height: 52px;
+    }
+
+    .seal-text {
+        font-size: 20px;
+    }
+
+    .card-names {
+        font-size: 32px;
+    }
+
+    .envelope-card {
+        padding: 24px 20px;
+    }
+}
